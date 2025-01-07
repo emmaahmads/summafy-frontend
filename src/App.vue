@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <LoginPage />
+    <HeaderLogo />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LoginPage from './components/LoginPage.vue'
+import HeaderLogo from './view/HeaderLogo.vue';
 
 export default {
   name: 'App',
   components: {
-    LoginPage
+    HeaderLogo
   }
 }
 </script>

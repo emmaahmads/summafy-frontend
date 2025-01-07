@@ -1,7 +1,6 @@
 <template>
     <header class="header">
-      <!-- <img src="@/assets/summafy-logo.png" alt="Logo" class="logo" /> -->
-      <h1 class="title">Summafy</h1>
+      <img src="@/assets/summafy-logo.png" alt="Logo" class="logo" />
     </header>
   </template>
   
@@ -13,15 +12,16 @@
   
   <style scoped>
   .header {
-    display: flex;
+    display: outside-flex;
     align-items: center;
-    padding: 10px;
-    background-color: #f8f9fa;
+    padding: 20px;
+    background-color: #fff;
   }
   
   .logo {
-    height: 50px;
-    margin-right: 10px;
+    height: 200px;
+    width: auto;
+    margin-right: 20px;
   }
   
   .title {

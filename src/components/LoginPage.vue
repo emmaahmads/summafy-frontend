@@ -3,20 +3,24 @@
     <h1>Login</h1>
     <form @submit.prevent="handleLogin">
       <div>
-        <label for="username">Username:</label>
+        <label for="username">Username: </label>
         <input type="text" id="username" v-model="username" required />
       </div>
       <div>
-        <label for="password">Password:</label>
+        <label for="password">Password: </label>
         <input type="password" id="password" v-model="password" required />
       </div>
       <button type="submit">Login</button>
     </form>
+ </div>
+  <div>
+    <p>Google login</p>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios';
+//import sha256 from 'crypto-js/sha256';
 export default {
   data() {
     return {
@@ -26,17 +30,21 @@ export default {
   },
   methods: {
     handleLogin() {
-      const apiUrl = 'http://localhost:8080/login';
+      const apiUrl = 'http://localhost:8082/login';
       const credentials = {
         username: this.username,
         password: this.password
+        //password: sha256(this.password).toString()
       };
 
-      axios.get(apiUrl, { params: credentials })
+      // TODO use https
+      axios.post(apiUrl, credentials)
         .then(response => {
           if (response.data.success) {
             // Login successful, handle token or redirect
             console.log('Login successful!');
+            localStorage.setItem('token', response.data.token);
+            this.$router.push('/dashboard');
             // Store token or user data in local storage or Vuex
           } else {
             // Login failed, display error message
@@ -56,7 +64,15 @@ export default {
   max-width: 400px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: small;
+  font-style: normal;
+}
+h1 {
+  font-family: 'Arial', sans-serif;
+}
+
+label, input, button {
+  font-family: sans-serif;
 }
 </style>
