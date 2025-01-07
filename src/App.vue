@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <HeaderLogo />
+    <MenuTabs />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import HeaderLogo from './view/HeaderLogo.vue';
+import MenuTabs from './view/MenuTabs.vue';
 
 export default {
   name: 'App',
   components: {
-    HeaderLogo
+    HeaderLogo,
+    MenuTabs
   }
 }
 </script>
