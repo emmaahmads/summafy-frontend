@@ -1,7 +1,6 @@
 <template>
     <div class="container">
-      <button class="toggle-button" @click="toggleDarkMode">Toggle Dark Mode</button>
-  
+     
       <h1>View Documents</h1>
   
       <table class="table">

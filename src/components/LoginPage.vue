@@ -16,11 +16,15 @@
   <div>
     <p>Google login</p>
   </div>
+  <div>
+    <p><RouterLink to="/signup">Sign up</RouterLink></p>
+  </div>
 </template>
 
 <script>
 import axios from '../axios';
 import {login, logout} from '../auth';
+//import RouterLink from 'vue-router';
 //import sha256 from 'crypto-js/sha256';
 export default {
   data() {
