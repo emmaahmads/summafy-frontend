@@ -20,6 +20,7 @@
 
 <script>
 import axios from '../axios';
+import {login, logout} from '../auth';
 //import sha256 from 'crypto-js/sha256';
 export default {
   data() {
@@ -43,16 +44,18 @@ export default {
           if (response.data.success) {
             // Login successful, handle token or redirect
             console.log('Login successful!');
-            localStorage.setItem('token', response.data.token);
+            login(this.username, response.data.token);
             this.$router.push('/dashboard');
             // Store token or user data in local storage or Vuex
           } else {
             // Login failed, display error message
             console.error('Login failed:', response.data.error);
+            logout();
           }
         })
         .catch(error => {
           console.error('Error logging in:', error);
+          logout();
         });
     }
   }

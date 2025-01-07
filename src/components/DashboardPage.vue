@@ -2,21 +2,8 @@
   <div class="dashboard-page">
     <div class="container">
       <header class="header">
-        <h1>Summafy Dashboard</h1>
         <p>Hello, {{ user }}!</p>
-        <p>Here you can upload documents and view the history of activities.</p>
       </header>
-
-      <nav class="nav-links">
-        <ul>
-          <li>
-            <input type="file" multiple @change="handleFileUpload" />
-          </li>
-          <li><a href="/view">View Documents</a></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </nav>
-
       <section class="activity-history">
         <h2>Activity History</h2>
         <ul>
@@ -36,6 +23,7 @@
 
 <script>
 import axios from '../axios';
+import { authState } from '../auth';
 
 export default {
   data() {
@@ -51,7 +39,11 @@ export default {
     fetchDashboardData() {
       const apiUrl = 'http://localhost:8082/api/v1/dashboard';
       console.log('Fetching dashboard data...');
-      axios.get(apiUrl)
+      axios.get(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${authState.token}`
+        }
+      })
         .then(response => {
           console.log('Received response:', response.data);
           this.user = response.data.user;
@@ -61,30 +53,30 @@ export default {
           console.error('Error fetching dashboard data:', error);
         });
     },
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (!file) {
-        console.error('No file selected');
-        return;
-      }
+    // handleFileUpload(event) {
+    //   const file = event.target.files[0];
+    //   if (!file) {
+    //     console.error('No file selected');
+    //     return;
+    //   }
 
-      const formData = new FormData();
-      formData.append('file', file);
+    //   const formData = new FormData();
+    //   formData.append('file', file);
 
-      const apiUrl = 'http://localhost:8082/api/v1/upload';
-      axios.post(apiUrl, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-      .then(response => {
-        console.log('File uploaded successfully:', response.data);
-        // Handle successful upload, e.g., update activity history
-      })
-      .catch(error => {
-        console.error('Error uploading file:', error);
-      });
-    }
+    //   const apiUrl = 'http://localhost:8082/api/v1/upload';
+    //   axios.post(apiUrl, formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   })
+    //   .then(response => {
+    //     console.log('File uploaded successfully:', response.data);
+    //     // Handle successful upload, e.g., update activity history
+    //   })
+    //   .catch(error => {
+    //     console.error('Error uploading file:', error);
+    //   });
+    // }
   }
 };
 </script>

@@ -1,15 +1,18 @@
 import axios from 'axios';
+import { authState, checkAuth } from './auth';
 
 const instance = axios.create({
     baseURL: 'http://localhost:8082'
 });
 
+checkAuth();
+
 instance.interceptors.request.use(config => {
     console.log('Request:', config);
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-        console.log('Adding token to request headers:', token);
+    console.log('Auth State:', authState.isAuthenticated);
+    console.log('Token:', authState.token);
+    if (authState.token) {
+        instance.defaults.headers.common['Authorization'] = `Bearer ${authState.token}`;
     }
     return config;
 });

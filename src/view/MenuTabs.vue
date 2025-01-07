@@ -1,18 +1,20 @@
 <template>
-  <div class="menu-tabs">
+  <nav class="menu-tabs">
     <ul>
-      <li><a href="/all-activities">All Activities</a></li>
-      <li><a href="/my-documents">My Documents</a></li>
-      <li><a href="/upload-new-documents">Upload New Documents</a></li>
-      <li><a href="/signout">Sign Out</a></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/dashboard">All Activities</RouterLink></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/documents">My Documents</RouterLink></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/upload">Upload Documents</RouterLink></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/logout">Sign Out</RouterLink></li>
     </ul>
-  </div>
+  </nav>
 </template>
 
-<script>
-export default {
-  name: 'MenuTabs'
-};
+<script setup>
+import { authState, checkAuth } from '../auth';
+import { RouterLink } from 'vue-router';
+
+checkAuth();
+
 </script>
 
 <style scoped>
