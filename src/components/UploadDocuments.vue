@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { authState } from '../auth';
 export default {
     data() {
         return {
@@ -26,7 +27,10 @@ export default {
             }
 
             try {
-                const response = await fetch('YOUR_BACKEND_URL', {
+                const response = await fetch('http://localhost:8082/api/v1/upload', {
+                    headers: {
+                        'Authorization': 'Bearer ' + authState.token
+                    },
                     method: 'POST',
                     body: formData
                 });

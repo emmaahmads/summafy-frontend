@@ -15,6 +15,7 @@ export const login = (userData, token) => {
 };
 
 export const logout = () => {
+    console.log('logout');
     authState.isAuthenticated = false;
     authState.user = null;
     authState.token = null;

@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-page">
-    <div class="container">
+    <div if="authState.isAuthenticated" class="container">
       <header class="header">
         <p>Hello, {{ user }}!</p>
       </header>

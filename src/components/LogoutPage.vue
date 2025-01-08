@@ -7,8 +7,13 @@
 
 <script>
 import { logout } from '../auth';
-logout();
+
 export default {
+    // The mounted hook is called after the component is inserted into the DOM, making it a good place to perform actions such as fetching data or calling functions.
+    mounted() {
+        // Call the logout function from the auth module
+        logout();
+    },
     methods: {
         login() {
             this.$router.push('/');

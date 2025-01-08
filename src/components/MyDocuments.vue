@@ -3,32 +3,32 @@
      
       <h1>View Documents</h1>
   
+      <!--
       <table class="table">
         <thead>
           <tr>
-            <th>Document Link</th>
-            <th>Details</th>
+        <th>Document Link</th>
+        <th>Details</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="document in documents" :key="document.id">
-            <td>
-              <form :action="document.download" method="get">
-                <button type="submit" class="btn btn-primary">Download</button>
-              </form>
-            </td>
-            <td>
-              <ul>
-                <li>Name: {{ document.filename }}</li>
-                <li>Owner: {{ document.userId }}</li>
-                <li>Size: {{ document.size }}</li>
-                <li>Created: {{ document.createdAt }}</li>
-                <li>Summary/description: {{ document.summary }}</li>
-              </ul>
-            </td>
+        <td>
+          <a :href="document.download" class="btn btn-primary">Download</a>
+        </td>
+        <td>
+          <ul>
+            <li>Name: {{ document.filename }}</li>
+            <li>Owner: {{ document.userId }}</li>
+            <li>Size: {{ document.size }}</li>
+            <li>Created: {{ document.createdAt }}</li>
+            <li>Summary/description: {{ document.summary }}</li>
+          </ul>
+        </td>
           </tr>
         </tbody>
       </table>
+      -->
   
       <p><router-link to="/dashboard" class="btn btn-secondary">Go to Dashboard</router-link></p>
     </div>
