@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <LoginPage />
+    <HeaderLogo />
+    <MenuTabs />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LoginPage from './components/LoginPage.vue'
+import HeaderLogo from './view/HeaderLogo.vue';
+import MenuTabs from './view/MenuTabs.vue';
 
 export default {
   name: 'App',
   components: {
-    LoginPage
+    HeaderLogo,
+    MenuTabs
   }
 }
 </script>

@@ -3,20 +3,28 @@
     <h1>Login</h1>
     <form @submit.prevent="handleLogin">
       <div>
-        <label for="username">Username:</label>
+        <label for="username">Username: </label>
         <input type="text" id="username" v-model="username" required />
       </div>
       <div>
-        <label for="password">Password:</label>
+        <label for="password">Password: </label>
         <input type="password" id="password" v-model="password" required />
       </div>
       <button type="submit">Login</button>
     </form>
+ </div>
+  <div>
+    <p>Google login</p>
+  </div>
+  <div>
+    <p><RouterLink to="/signup">Sign up</RouterLink></p>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios';
+import {login, logout} from '../auth';
+//import sha256 from 'crypto-js/sha256';
 export default {
   data() {
     return {
@@ -26,25 +34,25 @@ export default {
   },
   methods: {
     handleLogin() {
-      const apiUrl = 'http://localhost:8080/login';
+      const apiUrl = '/login';
       const credentials = {
         username: this.username,
         password: this.password
       };
-
-      axios.get(apiUrl, { params: credentials })
+      axios.post(apiUrl, credentials)
         .then(response => {
           if (response.data.success) {
-            // Login successful, handle token or redirect
             console.log('Login successful!');
-            // Store token or user data in local storage or Vuex
+            login(this.username, response.data.token);
+            this.$router.push('/dashboard');
           } else {
-            // Login failed, display error message
             console.error('Login failed:', response.data.error);
+            logout();
           }
         })
         .catch(error => {
           console.error('Error logging in:', error);
+          logout();
         });
     }
   }
@@ -56,7 +64,15 @@ export default {
   max-width: 400px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: small;
+  font-style: normal;
+}
+h1 {
+  font-family: 'Arial', sans-serif;
+}
+
+label, input, button {
+  font-family: sans-serif;
 }
 </style>
