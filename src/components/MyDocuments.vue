@@ -35,42 +35,6 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        documents: [
-          // Example data, replace with actual data from your API
-          {
-            id: 1,
-            download: '/path/to/download1',
-            filename: 'Document1.pdf',
-            userId: 'User1',
-            size: '1MB',
-            createdAt: '2023-01-01',
-            summary: 'Summary of Document 1'
-          },
-          {
-            id: 2,
-            download: '/path/to/download2',
-            filename: 'Document2.pdf',
-            userId: 'User2',
-            size: '2MB',
-            createdAt: '2023-02-01',
-            summary: 'Summary of Document 2'
-          }
-        ]
-      };
-    },
-    methods: {
-      toggleDarkMode() {
-        if (document.body) {
-          document.body.classList.toggle('dark-mode');
-        } else {
-          console.error('document.body is null');
-        }
-      }
-    }
-  };
   </script>
   
   <style scoped>

@@ -24,7 +24,6 @@
 <script>
 import axios from '../axios';
 import {login, logout} from '../auth';
-//import RouterLink from 'vue-router';
 //import sha256 from 'crypto-js/sha256';
 export default {
   data() {
@@ -35,24 +34,18 @@ export default {
   },
   methods: {
     handleLogin() {
-      const apiUrl = 'http://localhost:8082/login';
+      const apiUrl = '/login';
       const credentials = {
         username: this.username,
         password: this.password
-        //password: sha256(this.password).toString()
       };
-
-      // TODO use https
       axios.post(apiUrl, credentials)
         .then(response => {
           if (response.data.success) {
-            // Login successful, handle token or redirect
             console.log('Login successful!');
             login(this.username, response.data.token);
             this.$router.push('/dashboard');
-            // Store token or user data in local storage or Vuex
           } else {
-            // Login failed, display error message
             console.error('Login failed:', response.data.error);
             logout();
           }

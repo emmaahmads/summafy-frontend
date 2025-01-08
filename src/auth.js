@@ -1,4 +1,3 @@
-// auth.js
 import { reactive } from 'vue';
 
 export const authState = reactive({
@@ -11,7 +10,7 @@ export const login = (userData, token) => {
     authState.isAuthenticated = true;
     authState.user = userData;
     authState.token = token;
-    localStorage.setItem('authToken', token); // Optional: Store token
+    localStorage.setItem('authToken', token);
 };
 
 export const logout = () => {
@@ -19,7 +18,7 @@ export const logout = () => {
     authState.isAuthenticated = false;
     authState.user = null;
     authState.token = null;
-    localStorage.removeItem('authToken'); // Optional: Clear token
+    localStorage.removeItem('authToken');
 };
 
 export const checkAuth = () => {
@@ -27,6 +26,5 @@ export const checkAuth = () => {
     if (token) {
         authState.isAuthenticated = true;
         authState.token = token;
-        // Optionally fetch user data from API
     }
 };

@@ -10,11 +10,8 @@
 </template>
 
 <script setup>
-import { authState, checkAuth } from '../auth';
+import { authState } from '../auth';
 import { RouterLink } from 'vue-router';
-
-checkAuth();
-
 </script>
 
 <style scoped>

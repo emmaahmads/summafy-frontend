@@ -23,7 +23,6 @@
 
 <script>
 import axios from '../axios';
-import { authState } from '../auth';
 
 export default {
   data() {
@@ -36,47 +35,19 @@ export default {
     this.fetchDashboardData();
   },
   methods: {  
-    fetchDashboardData() {
-      const apiUrl = 'http://localhost:8082/api/v1/dashboard';
+    async fetchDashboardData() {
+      const apiUrl = 'api/v1/dashboard';
       console.log('Fetching dashboard data...');
-      axios.get(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${authState.token}`
-        }
-      })
-        .then(response => {
-          console.log('Received response:', response.data);
-          this.user = response.data.user;
-          this.activities = response.data.act;
-        })
-        .catch(error => {
-          console.error('Error fetching dashboard data:', error);
-        });
+      try {
+        const response = await axios.get(apiUrl)
+        console.log('Received response:', response.data);
+        this.user = response.data.user;
+        this.activities = response.data.act;
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      }
+      
     },
-    // handleFileUpload(event) {
-    //   const file = event.target.files[0];
-    //   if (!file) {
-    //     console.error('No file selected');
-    //     return;
-    //   }
-
-    //   const formData = new FormData();
-    //   formData.append('file', file);
-
-    //   const apiUrl = 'http://localhost:8082/api/v1/upload';
-    //   axios.post(apiUrl, formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   })
-    //   .then(response => {
-    //     console.log('File uploaded successfully:', response.data);
-    //     // Handle successful upload, e.g., update activity history
-    //   })
-    //   .catch(error => {
-    //     console.error('Error uploading file:', error);
-    //   });
-    // }
   }
 };
 </script>
