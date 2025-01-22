@@ -1,9 +1,6 @@
-name: Frontend CI/CD
+name: Frontend CI
 
 on:
-  # push:
-  #   branches:
-  #     - main
   pull_request:
     branches:
       - main
@@ -28,22 +25,5 @@ jobs:
       # - name: Run Tests
       #   run: npm test
 
- # build docker container 
       - name: Build the app
         run: npm run build
-
-  # push to ECR 
-  # deploy:
-  #   name: Deploy to Production
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
-  #     - name: Deploy
-  #       run: |
-  #         echo "Deploying app..."
-  #         # Add deployment commands or scripts here
