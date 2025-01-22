@@ -1,0 +1,49 @@
+name: Frontend CI/CD
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      # - name: Run Tests
+      #   run: npm test
+
+ # build docker container 
+      - name: Build the app
+        run: npm run build
+
+  # push to ECR 
+  # deploy:
+  #   name: Deploy to Production
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: Deploy
+  #       run: |
+  #         echo "Deploying app..."
+  #         # Add deployment commands or scripts here
