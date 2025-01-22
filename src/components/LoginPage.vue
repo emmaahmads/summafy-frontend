@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page">
+  <div class="login-page  bg-barbiePink">
     <h1>Login</h1>
     <form @submit.prevent="handleLogin">
       <div>
