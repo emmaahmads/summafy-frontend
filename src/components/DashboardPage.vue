@@ -1,18 +1,31 @@
 <template>
-  <div class="dashboard-page">
-    <div if="authState.isAuthenticated" class="container">
-      <header class="header">
-        <p>Hello, {{ user }}!</p>
+  <div class="dashboard-page bg-background text-secondary">
+    <div class="container mx-auto p-4">
+      <header class="header mb-4">
+        <h1 class="text-primary text-3xl font-bold">Summafy Dashboard</h1>
+        <p class="text-accent">Hello, {{ user }}!</p>
+        <p class="text-accent">Here you can upload documents and view the history of activities.</p>
       </header>
+
+      <nav class="nav-links mb-4">
+        <ul class="flex space-x-4">
+          <li>
+            <input type="file" multiple @change="handleFileUpload" class="bg-surface border border-accent p-2 rounded" />
+          </li>
+          <li><RouterLink to="/view" class="text-primary hover:underline">View Documents</RouterLink></li>
+          <li><RouterLink to="/logout" class="text-primary hover:underline">Logout</RouterLink></li>
+        </ul>
+      </nav>
+
       <section class="activity-history">
-        <h2>Activity History</h2>
+        <h2 class="text-secondary text-2xl font-semibold mb-2">Activity History</h2>
         <ul>
-          <li v-for="activity in activities" :key="activity.id">
-            <span class="activity-date">{{ activity.Date }}</span>
-            <span class="activity-user">{{ activity.User }}</span>
-            <span class="activity-description">{{ activity.Activity }}</span>
-            <span class="activity-document" v-if="activity.Document">
-              <a :href="activity.Document.Href">{{ activity.Document.Rel }}</a>
+          <li v-for="activity in activities" :key="activity.id" class="mb-4 p-4 bg-surface rounded shadow">
+            <span class="activity-date block text-accent">{{ activity.date }}</span>
+            <span class="activity-user block text-accent">{{ activity.user }}</span>
+            <span class="activity-description block text-accent">{{ activity.description }}</span>
+            <span class="activity-document block text-accent" v-if="activity.document">
+              <a :href="activity.document.href" class="text-primary hover:underline">{{ activity.document.rel }}</a>
             </span>
           </li>
         </ul>

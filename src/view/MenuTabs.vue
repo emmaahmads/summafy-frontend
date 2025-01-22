@@ -1,10 +1,10 @@
 <template>
-  <nav class="menu-tabs">
-    <ul>
-      <li v-if="authState.isAuthenticated"><RouterLink to="/dashboard">All Activities</RouterLink></li>
-      <li v-if="authState.isAuthenticated"><RouterLink to="/documents">My Documents</RouterLink></li>
-      <li v-if="authState.isAuthenticated"><RouterLink to="/upload">Upload Documents</RouterLink></li>
-      <li v-if="authState.isAuthenticated"><RouterLink to="/logout">Sign Out</RouterLink></li>
+  <nav class="menu-tabs bg-background p-4">
+    <ul class="flex space-x-4">
+      <li v-if="authState.isAuthenticated"><RouterLink to="/dashboard" class="text-primary hover:underline">All Activities</RouterLink></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/documents" class="text-primary hover:underline">My Documents</RouterLink></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/upload" class="text-primary hover:underline">Upload Documents</RouterLink></li>
+      <li v-if="authState.isAuthenticated"><RouterLink to="/logout" class="text-primary hover:underline">Sign Out</RouterLink></li>
     </ul>
   </nav>
 </template>
