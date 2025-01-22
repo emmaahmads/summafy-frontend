@@ -62,8 +62,5 @@ export default {
 </script>
 
 <style scoped>
-.background-div {
-    background-image: url('../assets/barbie.JPG');
-}
 
 </style>

@@ -7,25 +7,14 @@
         <p class="text-accent">Here you can upload documents and view the history of activities.</p>
       </header>
 
-      <nav class="nav-links mb-4">
-        <ul class="flex space-x-4">
-          <li>
-            <input type="file" multiple @change="handleFileUpload" class="bg-surface border border-accent p-2 rounded" />
-          </li>
-          <li><RouterLink to="/view" class="text-primary hover:underline">View Documents</RouterLink></li>
-          <li><RouterLink to="/logout" class="text-primary hover:underline">Logout</RouterLink></li>
-        </ul>
-      </nav>
-
       <section class="activity-history">
         <h2 class="text-secondary text-2xl font-semibold mb-2">Activity History</h2>
         <ul>
           <li v-for="activity in activities" :key="activity.id" class="mb-4 p-4 bg-surface rounded shadow">
-            <span class="activity-date block text-accent">{{ activity.date }}</span>
-            <span class="activity-user block text-accent">{{ activity.user }}</span>
-            <span class="activity-description block text-accent">{{ activity.description }}</span>
-            <span class="activity-document block text-accent" v-if="activity.document">
-              <a :href="activity.document.href" class="text-primary hover:underline">{{ activity.document.rel }}</a>
+            <span class="activity-date block text-accent font-semibold">{{ activity.Date }}</span>
+            <span class="activity-user block text-accent">{{ activity.User }} {{ activity.Activity }}</span>
+            <span class="activity-document block text-accent" v-if="activity.Document">
+              <a :href="activity.Document.Href" class="text-primary hover:underline">{{ activity.Document.Rel }}</a>
             </span>
           </li>
         </ul>
@@ -112,7 +101,7 @@ export default {
 
 .activity-date,
 .activity-user,
-.activity-description,
+.activity-activity,
 .activity-document {
   display: inline-block;
   margin-right: 10px; 
