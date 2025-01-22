@@ -1,23 +1,25 @@
 <template>
-  <div class="login-page">
-    <h1>Login</h1>
-    <form @submit.prevent="handleLogin">
-      <div>
-        <label for="username">Username: </label>
-        <input type="text" id="username" v-model="username" required />
+  <div class="login-page bg-background text-secondary flex justify-center items-center h-screen">
+    <div class="bg-surface p-8 rounded shadow-md w-full max-w-md">
+      <h1 class="text-primary text-3xl font-bold mb-4">Login</h1>
+      <form @submit.prevent="handleLogin" class="space-y-4">
+        <div>
+          <label for="username" class="block text-accent">Username:</label>
+          <input type="text" id="username" v-model="username" required class="bg-surface border border-accent p-2 rounded w-full" />
+        </div>
+        <div>
+          <label for="password" class="block text-accent">Password:</label>
+          <input type="password" id="password" v-model="password" required class="bg-surface border border-accent p-2 rounded w-full" />
+        </div>
+        <button type="submit" class="bg-primary text-surface p-2 rounded w-full">Login</button>
+      </form>
+      <div class="mt-4">
+        <p class="text-accent">Google login</p>
       </div>
-      <div>
-        <label for="password">Password: </label>
-        <input type="password" id="password" v-model="password" required />
+      <div class="mt-4">
+        <p><RouterLink to="/signup" class="text-primary hover:underline">Sign up</RouterLink></p>
       </div>
-      <button type="submit">Login</button>
-    </form>
- </div>
-  <div>
-    <p>Google login</p>
-  </div>
-  <div>
-    <p><RouterLink to="/signup">Sign up</RouterLink></p>
+    </div>
   </div>
 </template>
 
@@ -60,19 +62,5 @@ export default {
 </script>
 
 <style scoped>
-.login-page {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
-  font-size: small;
-  font-style: normal;
-}
-h1 {
-  font-family: 'Arial', sans-serif;
-}
 
-label, input, button {
-  font-family: sans-serif;
-}
 </style>

@@ -1,18 +1,20 @@
 <template>
-  <div class="dashboard-page">
-    <div if="authState.isAuthenticated" class="container">
-      <header class="header">
-        <p>Hello, {{ user }}!</p>
+  <div class="dashboard-page bg-background text-secondary">
+    <div class="container mx-auto p-4">
+      <header class="header mb-4">
+        <h1 class="text-primary text-3xl font-bold">Summafy Dashboard</h1>
+        <p class="text-accent">Hello, {{ user }}!</p>
+        <p class="text-accent">Here you can upload documents and view the history of activities.</p>
       </header>
+
       <section class="activity-history">
-        <h2>Activity History</h2>
+        <h2 class="text-secondary text-2xl font-semibold mb-2">Activity History</h2>
         <ul>
-          <li v-for="activity in activities" :key="activity.id">
-            <span class="activity-date">{{ activity.Date }}</span>
-            <span class="activity-user">{{ activity.User }}</span>
-            <span class="activity-description">{{ activity.Activity }}</span>
-            <span class="activity-document" v-if="activity.Document">
-              <a :href="activity.Document.Href">{{ activity.Document.Rel }}</a>
+          <li v-for="activity in activities" :key="activity.id" class="mb-4 p-4 bg-surface rounded shadow">
+            <span class="activity-date block text-accent font-semibold">{{ activity.Date }}</span>
+            <span class="activity-user block text-accent">{{ activity.User }} {{ activity.Activity }}</span>
+            <span class="activity-document block text-accent" v-if="activity.Document">
+              <a :href="activity.Document.Href" class="text-primary hover:underline">{{ activity.Document.Rel }}</a>
             </span>
           </li>
         </ul>
@@ -99,7 +101,7 @@ export default {
 
 .activity-date,
 .activity-user,
-.activity-description,
+.activity-activity,
 .activity-document {
   display: inline-block;
   margin-right: 10px; 
